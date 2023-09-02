@@ -13,4 +13,12 @@ router.get('/realtimeproducts', (req, res) => {
     res.render('realTimeProducts', { products });
   });
 
+// Get para la vista home de Handlebars
+
+router.get('/home', (req, res) => {
+  const products = getProducts();
+  res.render('home', { products });
+});
+
+
 export default router;

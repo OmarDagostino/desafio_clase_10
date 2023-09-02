@@ -82,6 +82,7 @@ import { body, validationResult } from 'express-validator';
 // *                          Rutas para productos                            *
 // ****************************************************************************
 
+
 // GET para retornar varios productos o todos
 
   router.get('/products', (req, res) => {
@@ -119,7 +120,6 @@ import { body, validationResult } from 'express-validator';
     products.push(newProduct);
     writeJSONFile(productsPath, products);
     const io = req.app.locals.io;
-    console.table(products)
     io.emit('productCreated', products);
     res.setHeader('Content-Type','application/json');
     res.status(201).json(newProduct);
@@ -154,7 +154,7 @@ import { body, validationResult } from 'express-validator';
       const filteredProducts = products.filter(p => p.id != productId);
       writeJSONFile(productsPath, filteredProducts);
       const io = req.app.locals.io;
-      io.emit('productDeleted', products);
+      io.emit('productDeleted', filteredProducts);
       res.setHeader('Content-Type','application/json');
       res.send(`Producto con ID ${productId} eliminado`);}
     else {
@@ -162,8 +162,11 @@ import { body, validationResult } from 'express-validator';
       res.status(404).send('Producto no encontrado');}
   });
 
+    
+  const getProducts = () => {
   let products = readJSONFile(productsPath);
-  const getProducts = () => products;
+    return products;
+  }
   export {getProducts}
    
 export default router;
