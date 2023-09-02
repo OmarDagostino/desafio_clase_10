@@ -1,0 +1,29 @@
+<div>
+    <h1>
+        Listado de productos disponibles
+    </h1>
+    <table>
+        <thead>
+            <tr>
+            <th>identificador</th>
+            <th>titulo</th>
+            <th>descripción</th>
+            <th>precio</th>
+            <th>codigo</th>
+            <th>existencias</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>{{description}}</td>
+            <td>{{price}}</td>
+            <td>{{code}}</td>
+            <td>{{stock}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
